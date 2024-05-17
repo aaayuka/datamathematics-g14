@@ -32,7 +32,8 @@ if uploaded_file:
     st.dataframe(df)
     
     # ユーザーからベクトルbの入力を受け取る
-    input_values = st.text_input("生徒の評価を入力してください（例: 2,5,3）")
+    input_values = st.text_input("生徒の評価を入力してください（例: 1,2,3）")
+    input_title = st.text_input("教科名を入力してください（例: 'Data and mathematics'）")
 
     if input_values:
         # 入力された値を処理する
@@ -47,7 +48,7 @@ if uploaded_file:
                 result = np.dot(A, b)
 
                 # 結果を表示
-                st.subheader("新しいアンケートの結果")
+                st.subheader("生徒への評価を踏まえたアンケートのスコア")
                 st.write(result)
 
                 # データの準備
@@ -60,8 +61,8 @@ if uploaded_file:
 
                 # グラフのタイトルとラベルを設定（オプション）
                 ax.set_ylabel('質問')
-                ax.set_xlabel('評価の合計')
-                ax.set_title('新しいアンケート結果')
+                ax.set_xlabel('スコア')
+                ax.set_title(input_title)
 
                 # グラフをStreamlitで表示
                 st.pyplot(fig)
